@@ -1,0 +1,21 @@
+{
+    "name": "spryker-middleware/report",
+    "description": "Report module",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1",
+        "spryker-middleware/process": "dev-dev"
+    },
+    "autoload": {
+        "psr-4": {
+          "SprykerMiddleware\\": "src/SprykerMiddleware/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "process-timeout": 600
+    }
+}

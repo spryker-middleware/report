@@ -8,6 +8,7 @@ use SprykerMiddleware\Zed\Process\Dependency\Plugin\Hook\PostProcessorHookPlugin
 
 /**
  * @method \SprykerMiddleware\Zed\Report\Business\ReportFacadeInterface getFacade()
+ * @method \SprykerMiddleware\Zed\Report\Communication\ReportCommunicationFactory getFactory()
  */
 class ReportPostProcessorHookPlugin extends AbstractPlugin implements PostProcessorHookPluginInterface
 {

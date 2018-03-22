@@ -17,13 +17,14 @@
     <table name="spy_process_result" phpName="SpyProcessResult">
         <column name="id_process_result" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
 
-        <column name="items_count" required="true" type="INTEGER"/>
-        <column name="items_processed_count" required="true" type="INTEGER"/>
-        <column name="items_failed_count" required="true" type="INTEGER"/>
-        <column name="items_skipped_count" required="true" type="INTEGER"/>
+        <column name="item_count" required="true" type="INTEGER"/>
+        <column name="processed_item_count" required="true" type="INTEGER"/>
+        <column name="failed_item_count" required="true" type="INTEGER"/>
+        <column name="skipped_item_count" required="true" type="INTEGER"/>
         <column name="start_time" required="true" type="TIMESTAMP"/>
         <column name="end_time" required="false" type="TIMESTAMP"/>
-
+        <column name="stage_results" required="false" type="LONGVARCHAR"/>
+        <column name="process_configuration" required="false" type="LONGVARCHAR"/>
         <column name="fk_process_id" type="INTEGER" />
         <foreign-key foreignTable="spy_process" onDelete="setnull" onUpdate="cascade">
             <reference local="fk_process_id" foreign="id_process" />

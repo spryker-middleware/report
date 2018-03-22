@@ -1,0 +1,69 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Process Result Details' } %}
+
+        {% block widget_content %}
+            <h4>{{ 'Process Details' | trans }}</h4>
+            <table class="table">
+                {% for key, item in processResultAttributes %}
+                    <tr>
+                        <td style="width: 150px;">{{ key }}</td>
+                        <td>
+                            {{ item | replace({".000000": ""}) }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <h4>{{ 'Process Configuration' | trans }}</h4>
+            <table class="table">
+                {% for key, item in processConfiguration %}
+                    <tr>
+                        <td style="width: 150px;">{{ key | replace({'_': " "}) | title }}</td>
+                        <td>
+                            {% if item is iterable %}
+                                <table class="table">
+                                    {% for k, value in item %}
+                                        <tr>
+                                            <td>{{ k | replace({'_': " "}) | title }}</td>
+                                            <td>{{ value }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            {% else %}
+                                {{ item }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <h4>{{ 'Process Stage Results' | trans }}</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Stage Name</th>
+                    <th>Input Item Count</th>
+                    <th>Output Item Count</th>
+                    <th>Total Execution Time</th>
+                    <th>Average Item Execution Time</th>
+                </tr>
+                </thead>
+                {% for item in stageResults %}
+                    <tr>
+                        <td>{{ item.stage_name }}</td>
+                        <td>{{ item.input_item_count }}</td>
+                        <td>{{ item.output_item_count }}</td>
+                        <td>{{ item.total_execution_time }}</td>
+                        <td>{{ item.average_time_per_item }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

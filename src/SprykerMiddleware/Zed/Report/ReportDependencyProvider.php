@@ -1,0 +1,88 @@
+<?php
+
+namespace SprykerMiddleware\Zed\Report;
+
+use Orm\Zed\Report\Persistence\SpyProcessQuery;
+use Orm\Zed\Report\Persistence\SpyProcessResultQuery;
+use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
+use Spryker\Zed\Kernel\Container;
+use SprykerMiddleware\Zed\Report\Dependency\Service\ReportToUtilEncodingBridge;
+
+class ReportDependencyProvider extends AbstractBundleDependencyProvider
+{
+    const PROPEL_PROCESS_QUERY = 'PROPEL_PROCESS_QUERY';
+
+    const PROPEL_PROCESS_RESULT_QUERY = 'PROPEL_PROCESS_RESULT_QUERY';
+
+    const SERVICE_UTIL_ENCODING = 'SERVICE_UTIL_ENCODING';
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    public function provideCommunicationLayerDependencies(Container $container): Container
+    {
+        $container = parent::provideCommunicationLayerDependencies($container);
+        $container = $this->addPropelProcessQuery($container);
+        $container = $this->addPropelProcessResultQuery($container);
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addPropelProcessQuery(Container $container): Container
+    {
+        $container[static::PROPEL_PROCESS_QUERY] = function (Container $container) {
+            return SpyProcessQuery::create();
+        };
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addPropelProcessResultQuery(Container $container): Container
+    {
+        $container[static::PROPEL_PROCESS_RESULT_QUERY] = function (Container $container) {
+            return SpyProcessResultQuery::create();
+        };
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addServiceUtilEncoding(Container $container)
+    {
+        $container[static::SERVICE_UTIL_ENCODING] = function (Container $container) {
+            return new ReportToUtilEncodingBridge(
+                $container->getLocator()->utilEncoding()->service()
+            );
+        };
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    public function providePersistenceLayerDependencies(Container $container)
+    {
+        $container = $this->addServiceUtilEncoding($container);
+
+        return $container;
+    }
+}

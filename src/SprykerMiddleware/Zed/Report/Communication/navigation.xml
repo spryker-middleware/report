@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <maintenance>
+        <pages>
+            <report>
+                <label>Middleware Reports</label>
+                <title>Middleware Reports</title>
+                <bundle>report</bundle>
+                <controller>report</controller>
+                <action>index</action>
+                <icon>fa-line-chart</icon>
+                <pages>
+                    <view>
+                        <label>Process Results</label>
+                        <title>Process Results</title>
+                        <bundle>report</bundle>
+                        <controller>process</controller>
+                        <action>index</action>
+                        <visible>0</visible>
+                        <pages>
+                            <details>
+                                <label>Result Details</label>
+                                <title>Result Details</title>
+                                <bundle>report</bundle>
+                                <controller>result</controller>
+                                <action>index</action>
+                                <visible>0</visible>
+                            </details>
+                        </pages>
+                    </view>
+                </pages>
+            </report>
+        </pages>
+    </maintenance>
+</config>

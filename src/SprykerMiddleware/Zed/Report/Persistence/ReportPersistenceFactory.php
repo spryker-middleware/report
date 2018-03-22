@@ -6,6 +6,7 @@ use Orm\Zed\Report\Persistence\SpyProcessQuery;
 use Orm\Zed\Report\Persistence\SpyProcessResultQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 use SprykerMiddleware\Zed\Report\Persistence\Mapper\ProcessResultMapper;
+use SprykerMiddleware\Zed\Report\ReportDependencyProvider;
 
 class ReportPersistenceFactory extends AbstractPersistenceFactory
 {
@@ -27,6 +28,14 @@ class ReportPersistenceFactory extends AbstractPersistenceFactory
 
     public function createProcessResultMapper()
     {
-        return new ProcessResultMapper();
+        return new ProcessResultMapper($this->getUtilEncodingService());
+    }
+
+    /**
+     * @return \SprykerMiddleware\Zed\Report\Dependency\Service\ReportToUtilEncodingInterface
+     */
+    public function getUtilEncodingService()
+    {
+        return $this->getProvidedDependency(ReportDependencyProvider::SERVICE_UTIL_ENCODING);
     }
 }

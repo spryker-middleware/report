@@ -30,6 +30,12 @@ class ReportEntityManager extends AbstractEntityManager implements ReportEntityM
         return $spyProcessEntityTransfer;
     }
 
+    /**
+     * @param \Generated\Shared\Transfer\ProcessResultTransfer $processResultTransfer
+     * @param \Generated\Shared\Transfer\SpyProcessEntityTransfer $spyProcessEntityTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProcessResultTransfer
+     */
     public function saveProcessResult(
         ProcessResultTransfer $processResultTransfer,
         SpyProcessEntityTransfer $spyProcessEntityTransfer

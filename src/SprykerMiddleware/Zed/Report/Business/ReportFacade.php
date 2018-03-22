@@ -21,4 +21,28 @@ class ReportFacade extends AbstractFacade implements ReportFacadeInterface
             ->createProcessResult()
             ->saveProcessResult($processResultTransfer);
     }
+
+    /**
+     * @param int $idResult
+     *
+     * @return \Generated\Shared\Transfer\ProcessResultTransfer|mixed
+     */
+    public function findProcessResultByResultId(int $idResult)
+    {
+        return $this->getFactory()
+            ->createProcessResult()
+            ->findProcessResultByResultId($idResult);
+    }
+
+    /**
+     * @param int $idProcess
+     *
+     * @return mixed
+     */
+    public function findProcessByProcessId(int $idProcess)
+    {
+        return $this->getFactory()
+            ->createProcessResult()
+            ->findProcessByProcessId($idProcess);
+    }
 }

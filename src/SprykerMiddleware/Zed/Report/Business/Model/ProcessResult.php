@@ -44,4 +44,24 @@ class ProcessResult implements ProcessResultInterface
 
         return $this->reportEntityManager->saveProcessResult($processResultTransfer, $spyProcessEntityTransfer);
     }
+
+    /**
+     * @param int $idResult
+     *
+     * @return mixed
+     */
+    public function findProcessResultByResultId(int $idResult)
+    {
+        return $this->reportRepository->findProcessResultByResultId($idResult);
+    }
+
+    /**
+     * @param int $idProcess
+     *
+     * @return mixed
+     */
+    public function findProcessByProcessId(int $idProcess)
+    {
+        return $this->reportRepository->findProcessByProcessId($idProcess);
+    }
 }

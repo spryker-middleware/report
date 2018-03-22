@@ -12,6 +12,9 @@ use SprykerMiddleware\Zed\Report\Persistence\Mapper\ProcessResultMapper;
  */
 class ReportBusinessFactory extends AbstractBusinessFactory
 {
+    /**
+     * @return \SprykerMiddleware\Zed\Report\Business\Model\ProcessResult
+     */
     public function createProcessResult()
     {
         return new ProcessResult(

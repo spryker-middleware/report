@@ -37,7 +37,7 @@ class ReportDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addPropelProcessQuery(Container $container): Container
     {
-        $container[static::PROPEL_PROCESS_QUERY] = function (Container $container) {
+        $container[static::PROPEL_PROCESS_QUERY] = function (Container $container): SpyProcessQuery {
             return SpyProcessQuery::create();
         };
 
@@ -51,7 +51,7 @@ class ReportDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addPropelProcessResultQuery(Container $container): Container
     {
-        $container[static::PROPEL_PROCESS_RESULT_QUERY] = function (Container $container) {
+        $container[static::PROPEL_PROCESS_RESULT_QUERY] = function (Container $container): SpyProcessResultQuery {
             return SpyProcessResultQuery::create();
         };
 
@@ -63,9 +63,9 @@ class ReportDependencyProvider extends AbstractBundleDependencyProvider
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    protected function addServiceUtilEncoding(Container $container)
+    protected function addServiceUtilEncoding(Container $container): Container
     {
-        $container[static::SERVICE_UTIL_ENCODING] = function (Container $container) {
+        $container[static::SERVICE_UTIL_ENCODING] = function (Container $container): ReportToUtilEncodingBridge {
             return new ReportToUtilEncodingBridge(
                 $container->getLocator()->utilEncoding()->service()
             );
@@ -79,9 +79,11 @@ class ReportDependencyProvider extends AbstractBundleDependencyProvider
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    public function providePersistenceLayerDependencies(Container $container)
+    public function providePersistenceLayerDependencies(Container $container): Container
     {
         $container = $this->addServiceUtilEncoding($container);
+        $container = $this->addPropelProcessQuery($container);
+        $container = $this->addPropelProcessResultQuery($container);
 
         return $container;
     }

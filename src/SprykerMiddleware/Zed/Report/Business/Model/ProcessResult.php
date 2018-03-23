@@ -36,7 +36,7 @@ class ProcessResult implements ProcessResultInterface
      *
      * @return \Generated\Shared\Transfer\ProcessResultTransfer
      */
-    public function saveProcessResult(ProcessResultTransfer $processResultTransfer)
+    public function saveProcessResult(ProcessResultTransfer $processResultTransfer): ProcessResultTransfer
     {
         $spyProcessEntityTransfer = new SpyProcessEntityTransfer();
         $spyProcessEntityTransfer->setProcessName($processResultTransfer->getProcessName());
@@ -48,9 +48,9 @@ class ProcessResult implements ProcessResultInterface
     /**
      * @param int $idResult
      *
-     * @return mixed
+     * @return \Generated\Shared\Transfer\ProcessResultTransfer
      */
-    public function findProcessResultByResultId(int $idResult)
+    public function findProcessResultByResultId(int $idResult): ProcessResultTransfer
     {
         return $this->reportRepository->findProcessResultByResultId($idResult);
     }
@@ -58,9 +58,9 @@ class ProcessResult implements ProcessResultInterface
     /**
      * @param int $idProcess
      *
-     * @return mixed
+     * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer
      */
-    public function findProcessByProcessId(int $idProcess)
+    public function findProcessByProcessId(int $idProcess): SpyProcessEntityTransfer
     {
         return $this->reportRepository->findProcessByProcessId($idProcess);
     }

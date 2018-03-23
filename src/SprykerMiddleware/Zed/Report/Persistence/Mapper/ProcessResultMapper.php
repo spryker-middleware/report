@@ -11,6 +11,9 @@ use SprykerMiddleware\Zed\Report\Dependency\Service\ReportToUtilEncodingInterfac
 
 class ProcessResultMapper
 {
+    /**
+     * @var \SprykerMiddleware\Zed\Report\Dependency\Service\ReportToUtilEncodingInterface
+     */
     protected $utilEncoding;
 
     /**
@@ -59,8 +62,7 @@ class ProcessResultMapper
         $processResultTransfer->setStartTime($processResultEntityTransfer->getStartTime());
         $processResultTransfer->setEndTime($processResultEntityTransfer->getEndTime());
 
-        $stages = $this->mapArrayToStagesResult($this->utilEncoding->decodeJson($processResultEntityTransfer->getStageResults(), true));
-        $processResultTransfer->setStageResults($stages);
+        $processResultTransfer = $this->mapArrayToStagesResult($processResultTransfer, $this->utilEncoding->decodeJson($processResultEntityTransfer->getStageResults(), true));
 
         $conf = new ProcessConfigurationTransfer();
         $conf->fromArray($this->utilEncoding->decodeJson($processResultEntityTransfer->getProcessConfiguration(), true));
@@ -74,7 +76,7 @@ class ProcessResultMapper
      *
      * @return array
      */
-    public function mapStagesResultToArray(ArrayObject $stagesResults)
+    public function mapStagesResultToArray(ArrayObject $stagesResults): array
     {
         $stagesResultsArray = [];
 
@@ -85,20 +87,20 @@ class ProcessResultMapper
     }
 
     /**
+     * @param \Generated\Shared\Transfer\ProcessResultTransfer $processResultTransfer
      * @param array $stagesResults
      *
-     * @return \ArrayObject
+     * @return \Generated\Shared\Transfer\ProcessResultTransfer
      */
-    public function mapArrayToStagesResult(array $stagesResults)
+    public function mapArrayToStagesResult(ProcessResultTransfer $processResultTransfer, array $stagesResults): ProcessResultTransfer
     {
-        $res = new ArrayObject();
         foreach ($stagesResults as $stage) {
             $stagesResultsTransfer = new StageResultsTransfer();
             $stagesResultsTransfer->fromArray($stage);
 
-            $res->append($stagesResultsTransfer);
+            $processResultTransfer->addStageResult($stagesResultsTransfer);
         }
 
-        return $res;
+        return $processResultTransfer;
     }
 }

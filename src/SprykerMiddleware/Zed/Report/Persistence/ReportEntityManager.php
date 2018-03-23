@@ -15,9 +15,9 @@ class ReportEntityManager extends AbstractEntityManager implements ReportEntityM
     /**
      * @param \Generated\Shared\Transfer\SpyProcessEntityTransfer $spyProcessEntityTransfer
      *
-     * @return mixed
+     * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer
      */
-    public function saveProcess(SpyProcessEntityTransfer $spyProcessEntityTransfer)
+    public function saveProcess(SpyProcessEntityTransfer $spyProcessEntityTransfer): SpyProcessEntityTransfer
     {
         $spyProcess = $this->getFactory()
             ->createProcessQuery()

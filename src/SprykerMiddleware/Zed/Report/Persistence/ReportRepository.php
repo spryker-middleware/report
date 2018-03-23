@@ -2,6 +2,8 @@
 
 namespace SprykerMiddleware\Zed\Report\Persistence;
 
+use Generated\Shared\Transfer\ProcessResultTransfer;
+use Generated\Shared\Transfer\SpyProcessEntityTransfer;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
@@ -14,7 +16,7 @@ class ReportRepository extends AbstractRepository implements ReportRepositoryInt
      *
      * @return \Generated\Shared\Transfer\ProcessResultTransfer|null
      */
-    public function findProcessResultByResultId(int $idResult)
+    public function findProcessResultByResultId(int $idResult): ProcessResultTransfer
     {
         $query = $this->getFactory()
             ->createProcessResultQuery()
@@ -34,9 +36,9 @@ class ReportRepository extends AbstractRepository implements ReportRepositoryInt
     /**
      * @param int $idProcess
      *
-     * @return mixed
+     * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer
      */
-    public function findProcessByProcessId(int $idProcess)
+    public function findProcessByProcessId(int $idProcess): SpyProcessEntityTransfer
     {
         $query = $this->getFactory()->createProcessQuery()->filterByIdProcess($idProcess);
         return $this->buildQueryFromCriteria($query)->findOne();

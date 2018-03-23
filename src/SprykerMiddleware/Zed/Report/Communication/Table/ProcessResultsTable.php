@@ -25,12 +25,21 @@ class ProcessResultsTable extends AbstractTable
     const URL_PARAM_ID_RESULT = 'id_result';
 
     /**
-     * @var \Orm\Zed\Report\Persistence\SpyProcessQuery
+     * @var \Orm\Zed\Report\Persistence\SpyProcessResultQuery
      */
     protected $processResultQuery;
 
+    /**
+     * @var int
+     */
     protected $idProcess;
 
+    /**
+     * ProcessResultsTable constructor.
+     *
+     * @param \Orm\Zed\Report\Persistence\SpyProcessResultQuery $processResultQuery
+     * @param int $idProcess
+     */
     public function __construct(SpyProcessResultQuery $processResultQuery, int $idProcess)
     {
         $this->processResultQuery = $processResultQuery;
@@ -42,7 +51,7 @@ class ProcessResultsTable extends AbstractTable
      *
      * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
      */
-    protected function configure(TableConfiguration $config)
+    protected function configure(TableConfiguration $config): TableConfiguration
     {
         $config->setHeader([
             static::COL_ID_PROCESS_RESULT => 'ID',
@@ -77,7 +86,7 @@ class ProcessResultsTable extends AbstractTable
      *
      * @return array
      */
-    protected function prepareData(TableConfiguration $config)
+    protected function prepareData(TableConfiguration $config): array
     {
         $query = $this->prepareQuery();
 
@@ -99,19 +108,20 @@ class ProcessResultsTable extends AbstractTable
         return $results;
     }
 
-    protected function prepareQuery()
+    /**
+     * @return \Orm\Zed\Report\Persistence\SpyProcessResultQuery
+     */
+    protected function prepareQuery(): SpyProcessResultQuery
     {
-        $query = $this->processResultQuery->filterByFkProcessId($this->idProcess);
-
-        return $query;
+        return $this->processResultQuery->filterByFkProcessId($this->idProcess);
     }
 
     /**
-     * @param array $item
+     * @param \Orm\Zed\Report\Persistence\SpyProcessResult $item
      *
      * @return string
      */
-    protected function getActionButtons(SpyProcessResult $item)
+    protected function getActionButtons(SpyProcessResult $item): string
     {
         $buttons = [];
         $buttons[] = $this->createViewButton($item);
@@ -122,9 +132,9 @@ class ProcessResultsTable extends AbstractTable
     /**
      * @param \Orm\Zed\Report\Persistence\SpyProcessResult $item
      *
-     * @return \DateTime|string
+     * @return string
      */
-    protected function getDuration(SpyProcessResult $item)
+    protected function getDuration(SpyProcessResult $item): string
     {
         if ($item->getEndTime('U') === null) {
             return $item->getCreatedAt('U') - $item->getStartTime('U');
@@ -137,7 +147,7 @@ class ProcessResultsTable extends AbstractTable
      *
      * @return string
      */
-    protected function getStatus(SpyProcessResult $item)
+    protected function getStatus(SpyProcessResult $item): string
     {
         if ($item->getFailedItemCount() > 0) {
             return '<span class="label label-danger">Failed</span>';
@@ -151,19 +161,19 @@ class ProcessResultsTable extends AbstractTable
     }
 
     /**
-     * @param array $item
+     * @param \Orm\Zed\Report\Persistence\SpyProcessResult $item
      *
      * @return string
      */
-    protected function createViewButton(SpyProcessResult $item)
+    protected function createViewButton(SpyProcessResult $item): string
     {
-        $viewDiscountUrl = Url::generate(
+        $viewButton = Url::generate(
             '/report/result/index',
             [
                 static::URL_PARAM_ID_RESULT => $item->getIdProcessResult(),
             ]
         );
 
-        return $this->generateViewButton($viewDiscountUrl, 'Details');
+        return $this->generateViewButton($viewButton, 'Details');
     }
 }

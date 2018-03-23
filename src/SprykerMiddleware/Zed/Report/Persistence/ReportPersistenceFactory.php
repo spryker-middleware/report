@@ -5,6 +5,7 @@ namespace SprykerMiddleware\Zed\Report\Persistence;
 use Orm\Zed\Report\Persistence\SpyProcessQuery;
 use Orm\Zed\Report\Persistence\SpyProcessResultQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
+use SprykerMiddleware\Zed\Report\Dependency\Service\ReportToUtilEncodingInterface;
 use SprykerMiddleware\Zed\Report\Persistence\Mapper\ProcessResultMapper;
 use SprykerMiddleware\Zed\Report\ReportDependencyProvider;
 
@@ -15,7 +16,7 @@ class ReportPersistenceFactory extends AbstractPersistenceFactory
      */
     public function createProcessQuery(): SpyProcessQuery
     {
-        return SpyProcessQuery::create();
+        return $this->getProvidedDependency(ReportDependencyProvider::PROPEL_PROCESS_QUERY);
     }
 
     /**
@@ -23,10 +24,13 @@ class ReportPersistenceFactory extends AbstractPersistenceFactory
      */
     public function createProcessResultQuery(): SpyProcessResultQuery
     {
-        return SpyProcessResultQuery::create();
+        return $this->getProvidedDependency(ReportDependencyProvider::PROPEL_PROCESS_RESULT_QUERY);
     }
 
-    public function createProcessResultMapper()
+    /**
+     * @return \SprykerMiddleware\Zed\Report\Persistence\Mapper\ProcessResultMapper
+     */
+    public function createProcessResultMapper(): ProcessResultMapper
     {
         return new ProcessResultMapper($this->getUtilEncodingService());
     }
@@ -34,7 +38,7 @@ class ReportPersistenceFactory extends AbstractPersistenceFactory
     /**
      * @return \SprykerMiddleware\Zed\Report\Dependency\Service\ReportToUtilEncodingInterface
      */
-    public function getUtilEncodingService()
+    public function getUtilEncodingService(): ReportToUtilEncodingInterface
     {
         return $this->getProvidedDependency(ReportDependencyProvider::SERVICE_UTIL_ENCODING);
     }

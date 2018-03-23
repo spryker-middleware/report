@@ -33,7 +33,7 @@ class ProcessesTable extends AbstractTable
      *
      * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
      */
-    protected function configure(TableConfiguration $config)
+    protected function configure(TableConfiguration $config): TableConfiguration
     {
         $config->setHeader([
             static::COL_ID_PROCESS => 'ID',
@@ -58,7 +58,7 @@ class ProcessesTable extends AbstractTable
      *
      * @return array
      */
-    protected function prepareData(TableConfiguration $config)
+    protected function prepareData(TableConfiguration $config): array
     {
         $queryResults = $this->runQuery($this->processQuery, $config);
         $results = [];
@@ -79,7 +79,7 @@ class ProcessesTable extends AbstractTable
      *
      * @return string
      */
-    protected function getActionButtons(array $item)
+    protected function getActionButtons(array $item): string
     {
         $buttons = [];
         $buttons[] = $this->createViewButton($item);
@@ -92,7 +92,7 @@ class ProcessesTable extends AbstractTable
      *
      * @return string
      */
-    protected function createViewButton(array $item)
+    protected function createViewButton(array $item): string
     {
         $viewDiscountUrl = Url::generate(
             '/report/process/index',

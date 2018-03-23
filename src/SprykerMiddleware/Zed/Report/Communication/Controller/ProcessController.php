@@ -3,6 +3,7 @@
 namespace SprykerMiddleware\Zed\Report\Communication\Controller;
 
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -18,26 +19,24 @@ class ProcessController extends AbstractController
      *
      * @return array
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request): array
     {
         $idProcess = $this->castId($request->query->get(static::URL_PARAM_ID_PROCESS));
         $table = $this->getFactory()->createProcessResultsTable($idProcess);
-
         $processResult = $this->getFacade()->findProcessByProcessId($idProcess);
-
-        $process['Process Id'] = $processResult->getIdProcess();
-        $process['Process Name'] = $processResult->getProcessName();
 
         return $this->viewResponse([
             'processResultsTable' => $table->render(),
-            'process' => $process,
+            'process' => $processResult,
         ]);
     }
 
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function tableAction(Request $request)
+    public function tableAction(Request $request): JsonResponse
     {
         $idProcess = $this->castId($request->query->get(static::URL_PARAM_ID_PROCESS));
         $table = $this->getFactory()

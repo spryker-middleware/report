@@ -12,7 +12,7 @@ use SprykerMiddleware\Zed\Report\ReportDependencyProvider;
 class ReportCommunicationFactory extends AbstractCommunicationFactory
 {
     /**
-     * @return \SprykerMiddleware\Zed\Report\Communication\Table\ProcessesTable|\Spryker\Zed\Gui\Communication\Table\AbstractTable
+     * @return \SprykerMiddleware\Zed\Report\Communication\Table\ProcessesTable
      */
     public function createProcessesTable(): ProcessesTable
     {
@@ -39,6 +39,9 @@ class ReportCommunicationFactory extends AbstractCommunicationFactory
         return $this->getProvidedDependency(ReportDependencyProvider::PROPEL_PROCESS_QUERY);
     }
 
+    /**
+     * @return \Orm\Zed\Report\Persistence\SpyProcessResultQuery
+     */
     protected function getPropelProcessResultQuery(): SpyProcessResultQuery
     {
         return $this->getProvidedDependency(ReportDependencyProvider::PROPEL_PROCESS_RESULT_QUERY);

@@ -17,17 +17,15 @@
                         <controller>process</controller>
                         <action>index</action>
                         <visible>0</visible>
-                        <pages>
-                            <details>
-                                <label>Result Details</label>
-                                <title>Result Details</title>
-                                <bundle>report</bundle>
-                                <controller>result</controller>
-                                <action>index</action>
-                                <visible>0</visible>
-                            </details>
-                        </pages>
                     </view>
+                    <details>
+                        <label>Result Details</label>
+                        <title>Result Details</title>
+                        <bundle>report</bundle>
+                        <controller>result</controller>
+                        <action>index</action>
+                        <visible>0</visible>
+                    </details>
                 </pages>
             </report>
         </pages>

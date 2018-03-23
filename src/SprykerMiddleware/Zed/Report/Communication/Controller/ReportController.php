@@ -3,6 +3,7 @@
 namespace SprykerMiddleware\Zed\Report\Communication\Controller;
 
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @method \SprykerMiddleware\Zed\Report\Business\ReportFacadeInterface getFacade()
@@ -13,7 +14,7 @@ class ReportController extends AbstractController
     /**
      * @return array
      */
-    public function indexAction()
+    public function indexAction(): array
     {
         $table = $this->getFactory()->createProcessesTable();
 
@@ -25,7 +26,7 @@ class ReportController extends AbstractController
     /**
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function tableAction()
+    public function tableAction(): JsonResponse
     {
         $table = $this->getFactory()
             ->createProcessesTable();

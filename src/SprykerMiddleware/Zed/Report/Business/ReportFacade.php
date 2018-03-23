@@ -3,6 +3,7 @@
 namespace SprykerMiddleware\Zed\Report\Business;
 
 use Generated\Shared\Transfer\ProcessResultTransfer;
+use Generated\Shared\Transfer\SpyProcessEntityTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
@@ -13,11 +14,11 @@ class ReportFacade extends AbstractFacade implements ReportFacadeInterface
     /**
      * @param \Generated\Shared\Transfer\ProcessResultTransfer $processResultTransfer
      *
-     * @return void
+     * @return \Generated\Shared\Transfer\ProcessResultTransfer
      */
-    public function saveProcessResult(ProcessResultTransfer $processResultTransfer)
+    public function saveProcessResult(ProcessResultTransfer $processResultTransfer): ProcessResultTransfer
     {
-        $this->getFactory()
+        return $this->getFactory()
             ->createProcessResult()
             ->saveProcessResult($processResultTransfer);
     }
@@ -25,9 +26,9 @@ class ReportFacade extends AbstractFacade implements ReportFacadeInterface
     /**
      * @param int $idResult
      *
-     * @return \Generated\Shared\Transfer\ProcessResultTransfer|mixed
+     * @return \Generated\Shared\Transfer\ProcessResultTransfer
      */
-    public function findProcessResultByResultId(int $idResult)
+    public function findProcessResultByResultId(int $idResult): ProcessResultTransfer
     {
         return $this->getFactory()
             ->createProcessResult()
@@ -37,9 +38,9 @@ class ReportFacade extends AbstractFacade implements ReportFacadeInterface
     /**
      * @param int $idProcess
      *
-     * @return mixed
+     * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer
      */
-    public function findProcessByProcessId(int $idProcess)
+    public function findProcessByProcessId(int $idProcess): SpyProcessEntityTransfer
     {
         return $this->getFactory()
             ->createProcessResult()

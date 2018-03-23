@@ -7,37 +7,88 @@
         {% block widget_content %}
             <h4>{{ 'Process Details' | trans }}</h4>
             <table class="table">
-                {% for key, item in processResultAttributes %}
-                    <tr>
-                        <td style="width: 150px;">{{ key }}</td>
-                        <td>
-                            {{ item | replace({".000000": ""}) }}
-                        </td>
-                    </tr>
-                {% endfor %}
+                <tr>
+                    <td style="width: 150px;">Start Time</td>
+                    <td>{{ processResult.getStartTime | replace({".000000": ""}) }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">End Time</td>
+                    <td>{{ processResult.getEndTime | replace({".000000": ""}) }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">Items Count</td>
+                    <td>{{ processResult.getItemCount }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">Processed Item Count</td>
+                    <td>{{ processResult.getProcessedItemCount }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">Skipped Item Count</td>
+                    <td>{{ processResult.getSkippedItemCount }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">Failed Item Count</td>
+                    <td>{{ processResult.getFailedItemCount }}</td>
+                </tr>
             </table>
 
             <h4>{{ 'Process Configuration' | trans }}</h4>
             <table class="table">
-                {% for key, item in processConfiguration %}
-                    <tr>
-                        <td style="width: 150px;">{{ key | replace({'_': " "}) | title }}</td>
-                        <td>
-                            {% if item is iterable %}
-                                <table class="table">
-                                    {% for k, value in item %}
-                                        <tr>
-                                            <td>{{ k | replace({'_': " "}) | title }}</td>
-                                            <td>{{ value }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                </table>
-                            {% else %}
-                                {{ item }}
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
+                <thead>
+                <tr>
+                    <th>Plugin</th>
+                    <th>Name</th>
+                    <th>Path</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>Iterator Plugin</td>
+                    <td>{{ processResult.getProcessConfiguration.getIteratorPluginName | raw }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Input Stream Plugin</td>
+                    <td>{{ processResult.getProcessConfiguration.getInputStreamPlugin.getStreamPluginName | raw }}</td>
+                    <td>{{ processResult.getProcessConfiguration.getInputStreamPlugin.getPath | raw }}</td>
+                </tr>
+                <tr>
+                    <td>Output Stream Plugin</td>
+                    <td>{{ processResult.getProcessConfiguration.getOutputStreamPlugin.getStreamPluginName | raw }}</td>
+                    <td>{{ processResult.getProcessConfiguration.getOutputStreamPlugin.getPath | raw }}</td>
+                </tr>
+                <tr>
+                    <td>Logger Plugin</td>
+                    <td>{{ processResult.getProcessConfiguration.loggerPluginName | raw }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Stage Plugins</td>
+                    <td>
+                        {% for pluginName in processResult.getProcessConfiguration.stagePluginNames %}
+                            {{ pluginName | raw }} <br/>
+                        {% endfor %}
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Pre Process Hook Plugins</td>
+                    <td>
+                        {% for pluginName in processResult.getProcessConfiguration.preProcessHookPluginNames %}
+                            {{ pluginName | raw }} <br/>
+                        {% endfor %}
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Post Process Hook Plugins</td>
+                    <td>
+                        {% for pluginName in processResult.getProcessConfiguration.postProcessHookPluginNames %}
+                            {{ pluginName | raw }} <br/>
+                        {% endfor %}
+                    </td>
+                    <td></td>
+                </tr>
             </table>
 
             <h4>{{ 'Process Stage Results' | trans }}</h4>
@@ -51,16 +102,17 @@
                     <th>Average Item Execution Time</th>
                 </tr>
                 </thead>
-                {% for item in stageResults %}
+                {% for item in processResult.getStageResults %}
                     <tr>
-                        <td>{{ item.stage_name }}</td>
-                        <td>{{ item.input_item_count }}</td>
-                        <td>{{ item.output_item_count }}</td>
-                        <td>{{ item.total_execution_time }}</td>
-                        <td>{{ item.average_time_per_item }}</td>
+                        <td>{{ item.getStageName }}</td>
+                        <td>{{ item.getInputItemCount }}</td>
+                        <td>{{ item.getOutputItemCount }}</td>
+                        <td>{{ (item.getTotalExecutionTime * 0.0001) | round | date('H:i:s') }}</td>
+                        <td>{{ (item.getTotalExecutionTime/item.getInputItemCount * 0.0001) | round |date('H:i:s') }}</td>
                     </tr>
                 {% endfor %}
             </table>
+
 
         {% endblock %}
 

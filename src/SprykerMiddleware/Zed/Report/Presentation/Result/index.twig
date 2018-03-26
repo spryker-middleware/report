@@ -9,27 +9,27 @@
             <table class="table">
                 <tr>
                     <td style="width: 150px;">Start Time</td>
-                    <td>{{ processResult.StartTime | replace({".000000": ""}) }}</td>
+                    <td>{{ processResult.startTime | replace({".000000": ""}) }}</td>
                 </tr>
                 <tr>
                     <td style="width: 150px;">End Time</td>
-                    <td>{{ processResult.EndTime | replace({".000000": ""}) }}</td>
+                    <td>{{ processResult.endTime | replace({".000000": ""}) }}</td>
                 </tr>
                 <tr>
                     <td style="width: 150px;">Items Count</td>
-                    <td>{{ processResult.ItemCount }}</td>
+                    <td>{{ processResult.itemCount }}</td>
                 </tr>
                 <tr>
                     <td style="width: 150px;">Processed Item Count</td>
-                    <td>{{ processResult.ProcessedItemCount }}</td>
+                    <td>{{ processResult.processedItemCount }}</td>
                 </tr>
                 <tr>
                     <td style="width: 150px;">Skipped Item Count</td>
-                    <td>{{ processResult.SkippedItemCount }}</td>
+                    <td>{{ processResult.skippedItemCount }}</td>
                 </tr>
                 <tr>
                     <td style="width: 150px;">Failed Item Count</td>
-                    <td>{{ processResult.FailedItemCount }}</td>
+                    <td>{{ processResult.failedItemCount }}</td>
                 </tr>
             </table>
 
@@ -44,28 +44,28 @@
                 </thead>
                 <tr>
                     <td>Iterator Plugin</td>
-                    <td>{{ processResult.ProcessConfiguration.IteratorPluginName | raw }}</td>
+                    <td>{{ processResult.processConfiguration.iteratorPluginName | raw }}</td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>Input Stream Plugin</td>
-                    <td>{{ processResult.ProcessConfiguration.InputStreamPlugin.StreamPluginName | raw }}</td>
-                    <td>{{ processResult.ProcessConfiguration.InputStreamPlugin.Path | raw }}</td>
+                    <td>{{ processResult.processConfiguration.inputStreamPlugin.streamPluginName | raw }}</td>
+                    <td>{{ processResult.processConfiguration.inputStreamPlugin.path | raw }}</td>
                 </tr>
                 <tr>
                     <td>Output Stream Plugin</td>
-                    <td>{{ processResult.ProcessConfiguration.OutputStreamPlugin.StreamPluginName | raw }}</td>
-                    <td>{{ processResult.ProcessConfiguration.OutputStreamPlugin.Path | raw }}</td>
+                    <td>{{ processResult.processConfiguration.outputStreamPlugin.streamPluginName | raw }}</td>
+                    <td>{{ processResult.processConfiguration.outputStreamPlugin.path | raw }}</td>
                 </tr>
                 <tr>
                     <td>Logger Plugin</td>
-                    <td>{{ processResult.ProcessConfiguration.loggerPluginName | raw }}</td>
+                    <td>{{ processResult.processConfiguration.loggerPluginName | raw }}</td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>Stage Plugins</td>
                     <td>
-                        {% for pluginName in processResult.ProcessConfiguration.stagePluginNames %}
+                        {% for pluginName in processResult.processConfiguration.stagePluginNames %}
                             {{ pluginName | raw }} <br/>
                         {% endfor %}
                     </td>
@@ -74,7 +74,7 @@
                 <tr>
                     <td>Pre Process Hook Plugins</td>
                     <td>
-                        {% for pluginName in processResult.ProcessConfiguration.preProcessHookPluginNames %}
+                        {% for pluginName in processResult.processConfiguration.preProcessHookPluginNames %}
                             {{ pluginName | raw }} <br/>
                         {% endfor %}
                     </td>
@@ -83,7 +83,7 @@
                 <tr>
                     <td>Post Process Hook Plugins</td>
                     <td>
-                        {% for pluginName in processResult.ProcessConfiguration.postProcessHookPluginNames %}
+                        {% for pluginName in processResult.processConfiguration.postProcessHookPluginNames %}
                             {{ pluginName | raw }} <br/>
                         {% endfor %}
                     </td>
@@ -102,13 +102,13 @@
                     <th>Average Item Execution Time</th>
                 </tr>
                 </thead>
-                {% for item in processResult.StageResults %}
+                {% for item in processResult.stageResults %}
                     <tr>
-                        <td>{{ item.StageName }}</td>
-                        <td>{{ item.InputItemCount }}</td>
-                        <td>{{ item.OutputItemCount }}</td>
-                        <td>{{ (item.TotalExecutionTime * 0.001) | round | date('H:i:s') }}</td>
-                        <td>{{ (item.TotalExecutionTime/item.InputItemCount * 0.001) | round | date('H:i:s') }}</td>
+                        <td>{{ item.stageName }}</td>
+                        <td>{{ item.inputItemCount }}</td>
+                        <td>{{ item.outputItemCount }}</td>
+                        <td>{{ (item.totalExecutionTime * 0.001) | round | date('H:i:s') }}</td>
+                        <td>{{ (item.totalExecutionTime/item.inputItemCount * 0.001) | round | date('H:i:s') }}</td>
                     </tr>
                 {% endfor %}
             </table>

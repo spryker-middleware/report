@@ -14,9 +14,9 @@ class ReportRepository extends AbstractRepository implements ReportRepositoryInt
     /**
      * @param int $idResult
      *
-     * @return \Generated\Shared\Transfer\ProcessResultTransfer|null
+     * @return \Generated\Shared\Transfer\ProcessResultTransfer
      */
-    public function findProcessResultByResultId(int $idResult): ProcessResultTransfer
+    public function findProcessResultByResultId(int $idResult): ?ProcessResultTransfer
     {
         $query = $this->getFactory()
             ->createProcessResultQuery()

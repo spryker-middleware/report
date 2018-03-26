@@ -12,7 +12,7 @@ interface ReportRepositoryInterface
      *
      * @return \Generated\Shared\Transfer\ProcessResultTransfer
      */
-    public function findProcessResultByResultId(int $idResult): ProcessResultTransfer;
+    public function findProcessResultByResultId(int $idResult): ?ProcessResultTransfer;
 
     /**
      * @param int $idProcess

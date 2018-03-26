@@ -23,7 +23,6 @@ class ResultController extends AbstractController
         $idResult = $this->castId($request->query->get(static::URL_PARAM_ID_RESULT));
         $processResult = $this->getFacade()->findProcessResultByResultId($idResult);
 
-        $processResult->getStageResults()[0]->getTotalExecutionTime();
         return $this->viewResponse([
             'processResult' => $processResult,
         ]);

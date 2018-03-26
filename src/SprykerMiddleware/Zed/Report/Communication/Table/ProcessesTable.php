@@ -94,13 +94,13 @@ class ProcessesTable extends AbstractTable
      */
     protected function createViewButton(array $item): string
     {
-        $viewDiscountUrl = Url::generate(
+        $viewButtonUrl = Url::generate(
             '/report/process/index',
             [
                 ProcessController::URL_PARAM_ID_PROCESS => $item[SpyProcessTableMap::COL_ID_PROCESS],
             ]
         );
 
-        return $this->generateViewButton($viewDiscountUrl, 'View');
+        return $this->generateViewButton($viewButtonUrl, 'View');
     }
 }

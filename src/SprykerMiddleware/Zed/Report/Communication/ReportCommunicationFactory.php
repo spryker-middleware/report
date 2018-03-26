@@ -4,6 +4,7 @@ namespace SprykerMiddleware\Zed\Report\Communication;
 
 use Orm\Zed\Report\Persistence\SpyProcessQuery;
 use Orm\Zed\Report\Persistence\SpyProcessResultQuery;
+use Spryker\Zed\Gui\Communication\Table\AbstractTable;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 use SprykerMiddleware\Zed\Report\Communication\Table\ProcessesTable;
 use SprykerMiddleware\Zed\Report\Communication\Table\ProcessResultsTable;
@@ -12,9 +13,9 @@ use SprykerMiddleware\Zed\Report\ReportDependencyProvider;
 class ReportCommunicationFactory extends AbstractCommunicationFactory
 {
     /**
-     * @return \SprykerMiddleware\Zed\Report\Communication\Table\ProcessesTable
+     * @return \Spryker\Zed\Gui\Communication\Table\AbstractTable
      */
-    public function createProcessesTable(): ProcessesTable
+    public function createProcessesTable(): AbstractTable
     {
         $processQuery = $this->getPropelProcessQuery();
         return new ProcessesTable($processQuery);
@@ -23,9 +24,9 @@ class ReportCommunicationFactory extends AbstractCommunicationFactory
     /**
      * @param int $idProcess
      *
-     * @return \SprykerMiddleware\Zed\Report\Communication\Table\ProcessResultsTable
+     * @return \Spryker\Zed\Gui\Communication\Table\AbstractTable
      */
-    public function createProcessResultsTable(int $idProcess): ProcessResultsTable
+    public function createProcessResultsTable(int $idProcess): AbstractTable
     {
         $processResultQuery = $this->getPropelProcessResultQuery();
         return new ProcessResultsTable($processResultQuery, $idProcess);

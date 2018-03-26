@@ -4,6 +4,7 @@ namespace SprykerMiddleware\Zed\Report\Business;
 
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerMiddleware\Zed\Report\Business\Model\ProcessResult;
+use SprykerMiddleware\Zed\Report\Business\Model\ProcessResultInterface;
 
 /**
  * @method \SprykerMiddleware\Zed\Report\Persistence\ReportRepositoryInterface getRepository()
@@ -12,9 +13,9 @@ use SprykerMiddleware\Zed\Report\Business\Model\ProcessResult;
 class ReportBusinessFactory extends AbstractBusinessFactory
 {
     /**
-     * @return \SprykerMiddleware\Zed\Report\Business\Model\ProcessResult
+     * @return \SprykerMiddleware\Zed\Report\Business\Model\ProcessResultInterface
      */
-    public function createProcessResult(): ProcessResult
+    public function createProcessResult(): ProcessResultInterface
     {
         return new ProcessResult(
             $this->getRepository(),

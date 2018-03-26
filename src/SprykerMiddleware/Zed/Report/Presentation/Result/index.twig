@@ -1,0 +1,121 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Process Result Details' } %}
+
+        {% block widget_content %}
+            <h4>{{ 'Process Details' | trans }}</h4>
+            <table class="table">
+                <tr>
+                    <td style="width: 150px;">Start Time</td>
+                    <td>{{ processResult.startTime | replace({".000000": ""}) }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">End Time</td>
+                    <td>{{ processResult.endTime | replace({".000000": ""}) }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">Items Count</td>
+                    <td>{{ processResult.itemCount }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">Processed Item Count</td>
+                    <td>{{ processResult.processedItemCount }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">Skipped Item Count</td>
+                    <td>{{ processResult.skippedItemCount }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">Failed Item Count</td>
+                    <td>{{ processResult.failedItemCount }}</td>
+                </tr>
+            </table>
+
+            <h4>{{ 'Process Configuration' | trans }}</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Plugin</th>
+                    <th>Name</th>
+                    <th>Path</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>Iterator Plugin</td>
+                    <td>{{ processResult.processConfiguration.iteratorPluginName | raw }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Input Stream Plugin</td>
+                    <td>{{ processResult.processConfiguration.inputStreamPlugin.streamPluginName | raw }}</td>
+                    <td>{{ processResult.processConfiguration.inputStreamPlugin.path | raw }}</td>
+                </tr>
+                <tr>
+                    <td>Output Stream Plugin</td>
+                    <td>{{ processResult.processConfiguration.outputStreamPlugin.streamPluginName | raw }}</td>
+                    <td>{{ processResult.processConfiguration.outputStreamPlugin.path | raw }}</td>
+                </tr>
+                <tr>
+                    <td>Logger Plugin</td>
+                    <td>{{ processResult.processConfiguration.loggerPluginName | raw }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Stage Plugins</td>
+                    <td>
+                        {% for pluginName in processResult.processConfiguration.stagePluginNames %}
+                            {{ pluginName | raw }} <br/>
+                        {% endfor %}
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Pre Process Hook Plugins</td>
+                    <td>
+                        {% for pluginName in processResult.processConfiguration.preProcessHookPluginNames %}
+                            {{ pluginName | raw }} <br/>
+                        {% endfor %}
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Post Process Hook Plugins</td>
+                    <td>
+                        {% for pluginName in processResult.processConfiguration.postProcessHookPluginNames %}
+                            {{ pluginName | raw }} <br/>
+                        {% endfor %}
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <h4>{{ 'Process Stage Results' | trans }}</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Stage Name</th>
+                    <th>Input Item Count</th>
+                    <th>Output Item Count</th>
+                    <th>Total Execution Time</th>
+                    <th>Average Item Execution Time</th>
+                </tr>
+                </thead>
+                {% for item in processResult.stageResults %}
+                    <tr>
+                        <td>{{ item.stageName }}</td>
+                        <td>{{ item.inputItemCount }}</td>
+                        <td>{{ item.outputItemCount }}</td>
+                        <td>{{ (item.totalExecutionTime * 0.001) | round | date('H:i:s') }}</td>
+                        <td>{{ (item.totalExecutionTime/item.inputItemCount * 0.001) | round | date('H:i:s') }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

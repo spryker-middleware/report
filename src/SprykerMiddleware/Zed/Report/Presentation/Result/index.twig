@@ -1,4 +1,10 @@
 {% extends '@Gui/Layout/layout.twig' %}
+{% block section_title 'View Result Details' | trans %}
+
+{% block action %}
+    {{ backActionButton('/report/process/index?id_process=' ~ process.idProcess, 'Back to Process Results' | trans) }}
+{% endblock %}
+
 
 {% block content %}
 
@@ -7,6 +13,10 @@
         {% block widget_content %}
             <h4>{{ 'Process Details' | trans }}</h4>
             <table class="table">
+                <tr>
+                    <td style="width: 150px;">Process Name</td>
+                    <td>{{ process.processName }}</td>
+                </tr>
                 <tr>
                     <td style="width: 150px;">Start Time</td>
                     <td>{{ processResult.startTime | replace({".000000": ""}) }}</td>

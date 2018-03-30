@@ -56,6 +56,16 @@ class ProcessResult implements ProcessResultInterface
     }
 
     /**
+     * @param int $idResult
+     *
+     * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer
+     */
+    public function findProcessByIdResult(int $idResult): SpyProcessEntityTransfer
+    {
+        return $this->reportRepository->findProcessByIdResult($idResult);
+    }
+
+    /**
      * @param int $idProcess
      *
      * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer

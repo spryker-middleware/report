@@ -107,8 +107,8 @@
                         <td>{{ item.stageName }}</td>
                         <td>{{ item.inputItemCount }}</td>
                         <td>{{ item.outputItemCount }}</td>
-                        <td>{{ (item.totalExecutionTime * 0.001) | round | date('H:i:s') }}</td>
-                        <td>{{ (item.totalExecutionTime/item.inputItemCount * 0.001) | round | date('H:i:s') }}</td>
+                        <td>{{ (item.totalExecutionTime/1000) | round | date('H:i:s') }}.{{ '%03d' | format(item.totalExecutionTime%1000) }}</td>
+                        <td>{% if item.inputItemCount > 0 %}{{ (item.totalExecutionTime/item.inputItemCount/1000) | round | date('H:i:s') }}.{{ '%03d' | format((item.totalExecutionTime/item.inputItemCount)%1000) }}{% endif %}</td>
                     </tr>
                 {% endfor %}
             </table>

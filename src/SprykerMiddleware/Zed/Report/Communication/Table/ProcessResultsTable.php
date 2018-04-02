@@ -150,7 +150,7 @@ class ProcessResultsTable extends AbstractTable
     protected function getStatus(SpyProcessResult $item): string
     {
         if ($item->getFailedItemCount() > 0) {
-            return '<span class="label label-danger">Failed</span>';
+            return '<span class="label label-danger">Fail</span>';
         }
 
         if ($item->getSkippedItemCount() > 0) {

@@ -36,6 +36,18 @@ class ReportFacade extends AbstractFacade implements ReportFacadeInterface
     }
 
     /**
+     * @param int $idResult
+     *
+     * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer
+     */
+    public function findProcessByIdResult(int $idResult): SpyProcessEntityTransfer
+    {
+        return $this->getFactory()
+            ->createProcessResult()
+            ->findProcessByIdResult($idResult);
+    }
+
+    /**
      * @param int $idProcess
      *
      * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer

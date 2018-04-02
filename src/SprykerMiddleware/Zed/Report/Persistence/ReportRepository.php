@@ -34,6 +34,21 @@ class ReportRepository extends AbstractRepository implements ReportRepositoryInt
     }
 
     /**
+     * @param int $idResult
+     *
+     * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer
+     */
+    public function findProcessByIdResult(int $idResult): SpyProcessEntityTransfer
+    {
+        $resultQuery = $this->getFactory()
+            ->createProcessResultQuery()
+            ->filterByIdProcessResult($idResult);
+        $processResult = $this->buildQueryFromCriteria($resultQuery)->findOne();
+        $processId = $processResult->getFkProcessId();
+        return $this->findProcessByProcessId($processId);
+    }
+
+    /**
      * @param int $idProcess
      *
      * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer

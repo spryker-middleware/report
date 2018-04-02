@@ -22,6 +22,13 @@ interface ReportFacadeInterface
     public function findProcessResultByResultId(int $idResult): ProcessResultTransfer;
 
     /**
+     * @param int $idResult
+     *
+     * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer
+     */
+    public function findProcessByIdResult(int $idResult): SpyProcessEntityTransfer;
+
+    /**
      * @param int $idProcess
      *
      * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer

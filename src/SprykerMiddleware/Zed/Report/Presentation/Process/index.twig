@@ -1,11 +1,18 @@
 {% extends '@Gui/Layout/layout.twig' %}
 
+
+{% block section_title 'Overview Process Results' | trans %}
+
+{% block action %}
+    {{ backActionButton('/report/report', 'Back to Processes List' | trans) }}
+{% endblock %}
+
 {% block content %}
 
     {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Process Results' | trans } %}
 
         {% block widget_content %}
-            <h4>{{ 'Process' | trans }}</h4>
+            <h4>{{ process.processName }}</h4>
             <table class="table">
                 {% for key, item in process %}
                     <tr>

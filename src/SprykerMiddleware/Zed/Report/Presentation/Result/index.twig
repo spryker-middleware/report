@@ -52,7 +52,7 @@
                     <td style="width: 150px;">Process Duration</td>
                     {% set diffdate = (date( processResult.endTime|date("Y:m:d H:i:s") )).diff(date( processResult.startTime|date("Y:m:d H:i:s") )) %}
                     <td>
-                        {{ diffdate|date("%H:%i:%s")}} (H:i:s)
+                        {{ diffdate|date("%H:%I:%S")}} (H:i:s)
                     </td>
                 </tr>
             </table>

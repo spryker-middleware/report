@@ -97,7 +97,7 @@ class ProcessResultsTable extends AbstractTable
         foreach ($queryResults as $item) {
             $results[] = [
                 static::COL_ID_PROCESS_RESULT => $item->getIdProcessResult(),
-                static::COL_START_TIME => $item->getStartTime('Y-m-d h:i:s'),
+                static::COL_START_TIME => $item->getStartTime('Y-m-d H:i:s'),
                 static::TABLE_COL_DURATION => gmdate("H:i:s", $this->getDuration($item)) . ' (H:i:s)',
                 static::COL_ITEM_COUNT => $item->getItemCount(),
                 static::TABLE_COL_STATUS => $this->getStatus($item),

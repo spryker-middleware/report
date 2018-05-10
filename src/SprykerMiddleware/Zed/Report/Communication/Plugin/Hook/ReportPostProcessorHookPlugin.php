@@ -18,7 +18,7 @@ class ReportPostProcessorHookPlugin extends AbstractPlugin implements PostProces
      *
      * @return void
      */
-    public function process(ProcessResultTransfer $processResultTransfer = null): void
+    public function process(?ProcessResultTransfer $processResultTransfer = null): void
     {
         $this->getFacade()
             ->saveProcessResult($processResultTransfer);

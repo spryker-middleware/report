@@ -7,7 +7,13 @@
         "spryker-middleware/process": "dev-dev"
     },
     "require-dev": {
-        "spryker/code-sniffer": "*"
+        "spryker/calculation": "*",
+        "spryker/cart": "*",
+        "spryker/code-sniffer": "*",
+        "spryker/propel": "*",
+        "spryker/silex": "*",
+        "spryker/testify": "*",
+        "spryker/transfer": "*"
     },
     "autoload": {
         "psr-4": {

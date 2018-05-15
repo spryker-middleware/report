@@ -4,7 +4,7 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1",
-        "spryker-middleware/process": "dev-dev"
+        "spryker-middleware/process": "^1.0.0"
     },
     "require-dev": {
         "spryker/calculation": "*",
@@ -28,19 +28,5 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "process-timeout": 600
-    },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/spryker-middleware/process.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/spryker-middleware/logger.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/spryker-middleware/report.git"
-        }
-    ]
+    }
 }

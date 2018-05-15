@@ -10,6 +10,9 @@ use SprykerMiddleware\Zed\Report\Communication\Table\ProcessesTable;
 use SprykerMiddleware\Zed\Report\Communication\Table\ProcessResultsTable;
 use SprykerMiddleware\Zed\Report\ReportDependencyProvider;
 
+/**
+ * @SuppressWarnings(FactoryMethodReturnInterfaceRule)
+ */
 class ReportCommunicationFactory extends AbstractCommunicationFactory
 {
     /**

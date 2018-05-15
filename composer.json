@@ -13,7 +13,9 @@
         "spryker/propel": "*",
         "spryker/silex": "*",
         "spryker/testify": "*",
-        "spryker/transfer": "*"
+        "spryker/transfer": "*",
+        "spryker/architecture-sniffer": "dev-master",
+        "phpmd/phpmd": "^2.4"
     },
     "autoload": {
         "psr-4": {

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed" xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Report\Persistence"
+          package="src.Orm.Zed.Report.Persistence">
+
+    <table name="spy_process" phpName="SpyProcess">
+        <column name="id_process" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="process_name" required="true" size="128" type="VARCHAR"/>
+
+        <unique name="spy_process-string">
+            <unique-column name="process_name"/>
+        </unique>
+        <id-method-parameter value="spy_process_pk_seq"/>
+    </table>
+
+    <table name="spy_process_result" phpName="SpyProcessResult">
+        <column name="id_process_result" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+
+        <column name="item_count" required="true" type="INTEGER"/>
+        <column name="processed_item_count" required="true" type="INTEGER"/>
+        <column name="failed_item_count" required="true" type="INTEGER"/>
+        <column name="skipped_item_count" required="true" type="INTEGER"/>
+        <column name="start_time" required="true" type="TIMESTAMP"/>
+        <column name="end_time" required="false" type="TIMESTAMP"/>
+        <column name="stage_results" required="false" type="LONGVARCHAR"/>
+        <column name="process_configuration" required="false" type="LONGVARCHAR"/>
+        <column name="fk_process_id" type="INTEGER" />
+        <foreign-key foreignTable="spy_process" onDelete="setnull" onUpdate="cascade">
+            <reference local="fk_process_id" foreign="id_process" />
+        </foreign-key>
+        <behavior name="timestampable"/>
+
+        <id-method-parameter value="spy_process_result_pk_seq"/>
+    </table>
+
+</database>

@@ -1,0 +1,15 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% block section_title 'Overview Processes' | trans %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Processes List' | trans } %}
+
+        {% block widget_content %}
+            {{ processesTable | raw }}
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

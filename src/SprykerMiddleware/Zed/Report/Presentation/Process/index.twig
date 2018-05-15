@@ -1,0 +1,33 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+
+{% block section_title 'Overview Process Results' | trans %}
+
+{% block action %}
+    {{ backActionButton('/report/report', 'Back to Processes List' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Process Results' | trans } %}
+
+        {% block widget_content %}
+            <h4>{{ process.processName }}</h4>
+            <table class="table">
+                {% for key, item in process %}
+                    <tr>
+                        <td style="width: 150px;">{{ key | replace({'_': " "}) }}</td>
+                        <td>
+                            {{ item | raw }}
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+            {{ processResultsTable | raw }}
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

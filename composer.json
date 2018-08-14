@@ -28,5 +28,9 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "process-timeout": 600
+    },
+    "scripts": {
+        "cs-check": "phpcs --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml -v src/",
+        "cs-fix": "phpcbf --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml -v src/"
     }
 }

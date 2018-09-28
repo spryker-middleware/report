@@ -4,7 +4,18 @@
     "license": "proprietary",
     "require": {
         "php": ">=7.1",
-        "spryker-middleware/process": "dev-dev"
+        "spryker-middleware/process": "^1.0.0"
+    },
+    "require-dev": {
+        "spryker/calculation": "*",
+        "spryker/cart": "*",
+        "spryker/code-sniffer": "*",
+        "spryker/propel": "*",
+        "spryker/silex": "*",
+        "spryker/testify": "*",
+        "spryker/transfer": "*",
+        "spryker/architecture-sniffer": "dev-master",
+        "phpmd/phpmd": "^2.4"
     },
     "autoload": {
         "psr-4": {
@@ -17,5 +28,9 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "process-timeout": 600
+    },
+    "scripts": {
+        "cs-check": "phpcs --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml -v src/",
+        "cs-fix": "phpcbf --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml -v src/"
     }
 }

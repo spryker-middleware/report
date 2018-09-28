@@ -18,6 +18,7 @@ use SprykerMiddleware\Zed\Process\Dependency\Plugin\Hook\PostProcessorHookPlugin
 class ReportPostProcessorHookPlugin extends AbstractPlugin implements PostProcessorHookPluginInterface
 {
     protected const PLUGIN_NAME = 'ReportPostProcessorHookPlugin';
+
     /**
      * @param \Generated\Shared\Transfer\ProcessResultTransfer|null $processResultTransfer
      *

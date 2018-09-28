@@ -1,7 +1,7 @@
 {
     "name": "spryker-middleware/report",
     "description": "Report module",
-    "license": "MIT",
+    "license": "proprietary",
     "require": {
         "php": ">=7.1",
         "spryker-middleware/process": "dev-dev"

@@ -3,11 +3,11 @@ language: php
 sudo: false
 
 php:
-- 7.1
+  - 7.1
 
 env:
     global:
-    - DEFAULT=0
+      - DEFAULT=0
 
 matrix:
     include:
@@ -17,11 +17,11 @@ matrix:
     fast_finish: true
 
 before_script:
-- composer install --prefer-dist --no-interaction
+  - COMPOSER_MEMORY_LIMIT=-1 composer install --prefer-dist --no-interaction
 
 script:
-- sh -c "if [ '$DEFAULT' = '1' ]; then vendor/bin/codecept run; fi"
-- sh -c "if [ '$PHPCS' = '1' ]; then composer cs-check ; fi"
+  - sh -c "if [ '$DEFAULT' = '1' ]; then vendor/bin/codecept run; fi"
+  - sh -c "if [ '$PHPCS' = '1' ]; then composer cs-check ; fi"
 
 notifications:
     email: false

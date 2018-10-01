@@ -14,7 +14,7 @@
         "spryker/silex": "*",
         "spryker/testify": "*",
         "spryker/transfer": "*",
-        "spryker/architecture-sniffer": "dev-master",
+        "spryker/architecture-sniffer": "*",
         "phpmd/phpmd": "^2.4"
     },
     "autoload": {

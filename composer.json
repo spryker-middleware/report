@@ -1,7 +1,7 @@
 {
     "name": "spryker-middleware/report",
     "description": "Report module",
-    "license": "MIT",
+    "license": "proprietary",
     "require": {
         "php": ">=7.1",
         "spryker-middleware/process": "^1.0.0"
@@ -14,7 +14,7 @@
         "spryker/silex": "*",
         "spryker/testify": "*",
         "spryker/transfer": "*",
-        "spryker/architecture-sniffer": "dev-master",
+        "spryker/architecture-sniffer": "*",
         "phpmd/phpmd": "^2.4"
     },
     "autoload": {

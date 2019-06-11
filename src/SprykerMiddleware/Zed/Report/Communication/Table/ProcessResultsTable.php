@@ -40,7 +40,6 @@ class ProcessResultsTable extends AbstractTable
     protected $idProcess;
 
     /**
-     *
      * @param \Orm\Zed\Report\Persistence\SpyProcessResultQuery $processResultQuery
      * @param int $idProcess
      */

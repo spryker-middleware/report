@@ -15,11 +15,11 @@ use SprykerMiddleware\Zed\Report\Dependency\Service\ReportToUtilEncodingBridge;
 
 class ReportDependencyProvider extends AbstractBundleDependencyProvider
 {
-    const PROPEL_PROCESS_QUERY = 'PROPEL_PROCESS_QUERY';
+    public const PROPEL_PROCESS_QUERY = 'PROPEL_PROCESS_QUERY';
 
-    const PROPEL_PROCESS_RESULT_QUERY = 'PROPEL_PROCESS_RESULT_QUERY';
+    public const PROPEL_PROCESS_RESULT_QUERY = 'PROPEL_PROCESS_RESULT_QUERY';
 
-    const SERVICE_UTIL_ENCODING = 'SERVICE_UTIL_ENCODING';
+    public const SERVICE_UTIL_ENCODING = 'SERVICE_UTIL_ENCODING';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container

@@ -88,6 +88,7 @@ class ProcessResultMapper
         foreach ($stagesResults as $stage) {
             $stagesResultsArray[] = $stage->toArray();
         }
+
         return $stagesResultsArray;
     }
 

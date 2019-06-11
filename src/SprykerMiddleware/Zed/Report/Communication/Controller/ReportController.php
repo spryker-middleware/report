@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * @method \SprykerMiddleware\Zed\Report\Business\ReportFacadeInterface getFacade()
  * @method \SprykerMiddleware\Zed\Report\Communication\ReportCommunicationFactory getFactory()
+ * @method \SprykerMiddleware\Zed\Report\Persistence\ReportRepositoryInterface getRepository()
  */
 class ReportController extends AbstractController
 {

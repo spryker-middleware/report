@@ -13,10 +13,14 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
  * @method \SprykerMiddleware\Zed\Report\Business\ReportBusinessFactory getFactory()
+ * @method \SprykerMiddleware\Zed\Report\Persistence\ReportRepositoryInterface getRepository()
+ * @method \SprykerMiddleware\Zed\Report\Persistence\ReportEntityManagerInterface getEntityManager()
  */
 class ReportFacade extends AbstractFacade implements ReportFacadeInterface
 {
     /**
+     * @api
+     *
      * @param \Generated\Shared\Transfer\ProcessResultTransfer $processResultTransfer
      *
      * @return \Generated\Shared\Transfer\ProcessResultTransfer
@@ -29,6 +33,8 @@ class ReportFacade extends AbstractFacade implements ReportFacadeInterface
     }
 
     /**
+     * @api
+     *
      * @param int $idResult
      *
      * @return \Generated\Shared\Transfer\ProcessResultTransfer
@@ -41,6 +47,8 @@ class ReportFacade extends AbstractFacade implements ReportFacadeInterface
     }
 
     /**
+     * @api
+     *
      * @param int $idResult
      *
      * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer
@@ -53,6 +61,8 @@ class ReportFacade extends AbstractFacade implements ReportFacadeInterface
     }
 
     /**
+     * @api
+     *
      * @param int $idProcess
      *
      * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer

@@ -16,9 +16,9 @@ use SprykerMiddleware\Zed\Report\Communication\Controller\ProcessController;
 
 class ProcessesTable extends AbstractTable
 {
-    const COL_ID_PROCESS = SpyProcessTableMap::COL_ID_PROCESS;
-    const COL_PROCESS_NAME = SpyProcessTableMap::COL_PROCESS_NAME;
-    const TABLE_COL_ACTIONS = 'Actions';
+    public const COL_ID_PROCESS = SpyProcessTableMap::COL_ID_PROCESS;
+    public const COL_PROCESS_NAME = SpyProcessTableMap::COL_PROCESS_NAME;
+    public const TABLE_COL_ACTIONS = 'Actions';
 
     /**
      * @var \Orm\Zed\Report\Persistence\SpyProcessQuery
@@ -76,6 +76,7 @@ class ProcessesTable extends AbstractTable
             ];
         }
         unset($queryResults);
+
         return $results;
     }
 

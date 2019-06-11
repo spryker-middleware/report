@@ -19,7 +19,7 @@ class ReportRepository extends AbstractRepository implements ReportRepositoryInt
     /**
      * @param int $idResult
      *
-     * @return \Generated\Shared\Transfer\ProcessResultTransfer
+     * @return \Generated\Shared\Transfer\ProcessResultTransfer|null
      */
     public function findProcessResultByResultId(int $idResult): ?ProcessResultTransfer
     {
@@ -50,6 +50,7 @@ class ReportRepository extends AbstractRepository implements ReportRepositoryInt
             ->filterByIdProcessResult($idResult);
         $processResult = $this->buildQueryFromCriteria($resultQuery)->findOne();
         $processId = $processResult->getFkProcessId();
+
         return $this->findProcessByProcessId($processId);
     }
 
@@ -61,6 +62,7 @@ class ReportRepository extends AbstractRepository implements ReportRepositoryInt
     public function findProcessByProcessId(int $idProcess): SpyProcessEntityTransfer
     {
         $query = $this->getFactory()->createProcessQuery()->filterByIdProcess($idProcess);
+
         return $this->buildQueryFromCriteria($query)->findOne();
     }
 }

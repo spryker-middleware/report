@@ -14,6 +14,10 @@ use SprykerMiddleware\Zed\Report\Dependency\Service\ReportToUtilEncodingInterfac
 use SprykerMiddleware\Zed\Report\Persistence\Mapper\ProcessResultMapper;
 use SprykerMiddleware\Zed\Report\ReportDependencyProvider;
 
+/**
+ * @method \SprykerMiddleware\Zed\Report\Persistence\ReportRepositoryInterface getRepository()
+ * @method \SprykerMiddleware\Zed\Report\Persistence\ReportEntityManagerInterface getEntityManager()
+ */
 class ReportPersistenceFactory extends AbstractPersistenceFactory
 {
     /**

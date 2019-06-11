@@ -20,6 +20,8 @@ class ReportPostProcessorHookPlugin extends AbstractPlugin implements PostProces
     protected const PLUGIN_NAME = 'ReportPostProcessorHookPlugin';
 
     /**
+     * @api
+     *
      * @param \Generated\Shared\Transfer\ProcessResultTransfer|null $processResultTransfer
      *
      * @return void
@@ -31,6 +33,8 @@ class ReportPostProcessorHookPlugin extends AbstractPlugin implements PostProces
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getName(): string

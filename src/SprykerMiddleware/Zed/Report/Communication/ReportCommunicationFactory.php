@@ -17,6 +17,9 @@ use SprykerMiddleware\Zed\Report\ReportDependencyProvider;
 
 /**
  * @SuppressWarnings(FactoryMethodReturnInterfaceRule)
+ * @method \SprykerMiddleware\Zed\Report\Business\ReportFacadeInterface getFacade()
+ * @method \SprykerMiddleware\Zed\Report\Persistence\ReportRepositoryInterface getRepository()
+ * @method \SprykerMiddleware\Zed\Report\Persistence\ReportEntityManagerInterface getEntityManager()
  */
 class ReportCommunicationFactory extends AbstractCommunicationFactory
 {
@@ -26,6 +29,7 @@ class ReportCommunicationFactory extends AbstractCommunicationFactory
     public function createProcessesTable(): AbstractTable
     {
         $processQuery = $this->getPropelProcessQuery();
+
         return new ProcessesTable($processQuery);
     }
 
@@ -37,6 +41,7 @@ class ReportCommunicationFactory extends AbstractCommunicationFactory
     public function createProcessResultsTable(int $idProcess): AbstractTable
     {
         $processResultQuery = $this->getPropelProcessResultQuery();
+
         return new ProcessResultsTable($processResultQuery, $idProcess);
     }
 

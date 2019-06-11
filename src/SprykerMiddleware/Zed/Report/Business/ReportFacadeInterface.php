@@ -13,6 +13,8 @@ use Generated\Shared\Transfer\SpyProcessEntityTransfer;
 interface ReportFacadeInterface
 {
     /**
+     * @api
+     *
      * @param \Generated\Shared\Transfer\ProcessResultTransfer $processResultTransfer
      *
      * @return \Generated\Shared\Transfer\ProcessResultTransfer
@@ -20,6 +22,8 @@ interface ReportFacadeInterface
     public function saveProcessResult(ProcessResultTransfer $processResultTransfer): ProcessResultTransfer;
 
     /**
+     * @api
+     *
      * @param int $idResult
      *
      * @return \Generated\Shared\Transfer\ProcessResultTransfer
@@ -27,6 +31,8 @@ interface ReportFacadeInterface
     public function findProcessResultByResultId(int $idResult): ProcessResultTransfer;
 
     /**
+     * @api
+     *
      * @param int $idResult
      *
      * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer
@@ -34,6 +40,8 @@ interface ReportFacadeInterface
     public function findProcessByIdResult(int $idResult): SpyProcessEntityTransfer;
 
     /**
+     * @api
+     *
      * @param int $idProcess
      *
      * @return \Generated\Shared\Transfer\SpyProcessEntityTransfer

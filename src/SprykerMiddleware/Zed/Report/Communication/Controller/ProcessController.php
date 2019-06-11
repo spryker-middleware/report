@@ -14,10 +14,11 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * @method \SprykerMiddleware\Zed\Report\Business\ReportFacadeInterface getFacade()
  * @method \SprykerMiddleware\Zed\Report\Communication\ReportCommunicationFactory getFactory()
+ * @method \SprykerMiddleware\Zed\Report\Persistence\ReportRepositoryInterface getRepository()
  */
 class ProcessController extends AbstractController
 {
-    const URL_PARAM_ID_PROCESS = 'id_process';
+    public const URL_PARAM_ID_PROCESS = 'id_process';
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request

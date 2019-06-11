@@ -16,18 +16,18 @@ use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 
 class ProcessResultsTable extends AbstractTable
 {
-    const COL_ID_PROCESS_RESULT = SpyProcessResultTableMap::COL_ID_PROCESS_RESULT;
-    const COL_ITEM_COUNT = SpyProcessResultTableMap::COL_ITEM_COUNT;
-    const COL_PROCESSED_ITEM_COUNT = SpyProcessResultTableMap::COL_PROCESSED_ITEM_COUNT;
-    const COL_SKIPPED_ITEM_COUNT = SpyProcessResultTableMap::COL_SKIPPED_ITEM_COUNT;
-    const COL_FAILED_ITEM_COUNT = SpyProcessResultTableMap::COL_FAILED_ITEM_COUNT;
-    const COL_START_TIME = SpyProcessResultTableMap::COL_START_TIME;
+    public const COL_ID_PROCESS_RESULT = SpyProcessResultTableMap::COL_ID_PROCESS_RESULT;
+    public const COL_ITEM_COUNT = SpyProcessResultTableMap::COL_ITEM_COUNT;
+    public const COL_PROCESSED_ITEM_COUNT = SpyProcessResultTableMap::COL_PROCESSED_ITEM_COUNT;
+    public const COL_SKIPPED_ITEM_COUNT = SpyProcessResultTableMap::COL_SKIPPED_ITEM_COUNT;
+    public const COL_FAILED_ITEM_COUNT = SpyProcessResultTableMap::COL_FAILED_ITEM_COUNT;
+    public const COL_START_TIME = SpyProcessResultTableMap::COL_START_TIME;
 
-    const TABLE_COL_DURATION = 'Duration';
-    const TABLE_COL_STATUS = 'Status';
-    const TABLE_COL_ACTIONS = 'Actions';
+    public const TABLE_COL_DURATION = 'Duration';
+    public const TABLE_COL_STATUS = 'Status';
+    public const TABLE_COL_ACTIONS = 'Actions';
 
-    const URL_PARAM_ID_RESULT = 'id_result';
+    public const URL_PARAM_ID_RESULT = 'id_result';
 
     /**
      * @var \Orm\Zed\Report\Persistence\SpyProcessResultQuery
@@ -40,7 +40,6 @@ class ProcessResultsTable extends AbstractTable
     protected $idProcess;
 
     /**
-     * ProcessResultsTable constructor.
      *
      * @param \Orm\Zed\Report\Persistence\SpyProcessResultQuery $processResultQuery
      * @param int $idProcess
@@ -110,6 +109,7 @@ class ProcessResultsTable extends AbstractTable
             ];
         }
         unset($queryResults);
+
         return $results;
     }
 
@@ -144,6 +144,7 @@ class ProcessResultsTable extends AbstractTable
         if ($item->getEndTime('U') === null) {
             return $item->getCreatedAt('U') - $item->getStartTime('U');
         }
+
         return $item->getEndTime('U') - $item->getStartTime('U');
     }
 

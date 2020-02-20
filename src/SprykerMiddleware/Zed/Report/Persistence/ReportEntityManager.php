@@ -45,7 +45,6 @@ class ReportEntityManager extends AbstractEntityManager implements ReportEntityM
         ProcessResultTransfer $processResultTransfer,
         SpyProcessEntityTransfer $spyProcessEntityTransfer
     ): ProcessResultTransfer {
-
         $entityTransfer = $this->getFactory()
             ->createProcessResultMapper()
             ->mapProcessResultTransferToEntityTransfer($processResultTransfer);

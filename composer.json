@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-          "SprykerMiddleware\\": "src/SprykerMiddleware/"
+            "SprykerMiddleware\\": "src/SprykerMiddleware/"
         }
     },
     "minimum-stability": "dev",

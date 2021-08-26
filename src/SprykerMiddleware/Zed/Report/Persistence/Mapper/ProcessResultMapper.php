@@ -42,12 +42,12 @@ class ProcessResultMapper
         $processResultEntityTransfer->setSkippedItemCount($processResultTransfer->getSkippedItemCount());
         $processResultEntityTransfer->setItemCount($processResultTransfer->getItemCount());
 
-        $startTime = !empty($processResultTransfer->getStartTime())
+        $startTime = ($processResultTransfer->getStartTime() !== null)
             ? date('Y-m-d H:i:s', $processResultTransfer->getStartTime())
             : null;
         $processResultEntityTransfer->setStartTime($startTime);
 
-        $endTime = !empty($processResultTransfer->getEndTime())
+        $endTime = ($processResultTransfer->getEndTime() !== null)
             ? date('Y-m-d H:i:s', $processResultTransfer->getEndTime())
             : null;
         $processResultEntityTransfer->setEndTime($endTime);
@@ -73,11 +73,11 @@ class ProcessResultMapper
         $processResultTransfer->setSkippedItemCount($processResultEntityTransfer->getSkippedItemCount());
         $processResultTransfer->setItemCount($processResultEntityTransfer->getItemCount());
 
-        if (!empty($processResultEntityTransfer->getStartTime())) {
+        if ($processResultEntityTransfer->getStartTime() !== null) {
             $processResultTransfer->setStartTime(strtotime($processResultEntityTransfer->getStartTime()));
         }
 
-        if (!empty($processResultEntityTransfer->getEndTime())) {
+        if ($processResultEntityTransfer->getEndTime() !== null) {
             $processResultTransfer->setEndTime(strtotime($processResultEntityTransfer->getEndTime()));
         }
 

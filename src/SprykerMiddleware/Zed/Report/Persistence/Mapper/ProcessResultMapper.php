@@ -41,8 +41,16 @@ class ProcessResultMapper
         $processResultEntityTransfer->setFailedItemCount($processResultTransfer->getFailedItemCount());
         $processResultEntityTransfer->setSkippedItemCount($processResultTransfer->getSkippedItemCount());
         $processResultEntityTransfer->setItemCount($processResultTransfer->getItemCount());
-        $processResultEntityTransfer->setStartTime($processResultTransfer->getStartTime());
-        $processResultEntityTransfer->setEndTime($processResultTransfer->getEndTime());
+
+        $startTime = ($processResultTransfer->getStartTime() !== null)
+            ? date('Y-m-d H:i:s', $processResultTransfer->getStartTime())
+            : null;
+        $processResultEntityTransfer->setStartTime($startTime);
+
+        $endTime = ($processResultTransfer->getEndTime() !== null)
+            ? date('Y-m-d H:i:s', $processResultTransfer->getEndTime())
+            : null;
+        $processResultEntityTransfer->setEndTime($endTime);
 
         $stagesResults = $this->mapStagesResultToArray($processResultTransfer->getStageResults());
         $processResultEntityTransfer->setStageResults($this->utilEncoding->encodeJson($stagesResults));
@@ -64,8 +72,14 @@ class ProcessResultMapper
         $processResultTransfer->setFailedItemCount($processResultEntityTransfer->getFailedItemCount());
         $processResultTransfer->setSkippedItemCount($processResultEntityTransfer->getSkippedItemCount());
         $processResultTransfer->setItemCount($processResultEntityTransfer->getItemCount());
-        $processResultTransfer->setStartTime($processResultEntityTransfer->getStartTime());
-        $processResultTransfer->setEndTime($processResultEntityTransfer->getEndTime());
+
+        if ($processResultEntityTransfer->getStartTime() !== null) {
+            $processResultTransfer->setStartTime(strtotime($processResultEntityTransfer->getStartTime()));
+        }
+
+        if ($processResultEntityTransfer->getEndTime() !== null) {
+            $processResultTransfer->setEndTime(strtotime($processResultEntityTransfer->getEndTime()));
+        }
 
         $processResultTransfer = $this->mapArrayToStagesResult($processResultTransfer, $this->utilEncoding->decodeJson($processResultEntityTransfer->getStageResults(), true));
 
